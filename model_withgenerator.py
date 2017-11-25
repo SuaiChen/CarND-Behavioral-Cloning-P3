@@ -31,12 +31,33 @@ for line in lines[1:]:
 X_train = np.array(images)
 y_train = np.array(measurements)
 
+print(len(X_train))
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_validation, y_train, y_validation = train_test_split(\
+	X_train, y_train, test_size=0.2, random_state=42)
+
+from sklearn.utils import shuffle
+
+def generator( X, y, batch_size=32):
+	num_samples = X.shape[0]
+	while 1:
+		for offset in range(0, num_samples, batch_size):
+			batch_X = X[offset:offset+batch_size]
+			batch_y = y[offset:offset+batch_size]
+			yield (batch_X, batch_y)
+
+train_generator = generator(X_train, y_train, batch_size=2048)
+validation_generator = generator(X_validation, y_validation, batch_size=2048)
+
+
+
 from keras.models import Sequential
 from keras.layers import Flatten,Dense,Cropping2D
 from keras.layers import Lambda
 from keras.layers import Convolution2D
 from keras.layers import MaxPooling2D
-import tensorflow as tf
 
 
 model = Sequential()
@@ -55,7 +76,8 @@ model.add(Dense(1))
 
 
 
-
 model.compile(loss='mse',optimizer='adam')
-model.fit(X_train,y_train,validation_split=0.2,batch_size=128,shuffle=True,nb_epoch=5)
+model.fit_generator(train_generator, samples_per_epoch= \
+	len(X_train), validation_data=validation_generator,\
+	nb_val_samples=len(X_validation), nb_epoch=3)
 model.save('/output/model.h5')
