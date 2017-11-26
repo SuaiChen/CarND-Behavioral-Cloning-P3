@@ -72,6 +72,7 @@ model.add(Dense(1))
 ## Results
   <img src="images/example1.png" alt="example1"/>
   <img src="images/example2.png" alt="example2"/>
+  
 ## Train by FloydHub server
   ![Train_Record](images/Train_record.png)
   - **command**.
