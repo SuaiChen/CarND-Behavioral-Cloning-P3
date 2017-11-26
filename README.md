@@ -53,6 +53,7 @@ I utilized with the model described in [Nvidia paper](https://arxiv.org/abs/1604
   <img src="images/model.png" alt="Architecture"/>
 </p>
 This model can be very briefly encoded with Keras. What's more, I add a layer to normalize input images.
+
 ```python
 # Model from Nvidia paper
 model = Sequential()
@@ -69,7 +70,9 @@ model.add(Dense(50))
 model.add(Dense(10))
 model.add(Dense(1))
 ```
+
 ## Results
+
 <p align="center">
   <img src="images/example1.png" alt="example1"/>
 </p>
