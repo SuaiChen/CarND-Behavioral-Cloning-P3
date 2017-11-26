@@ -70,21 +70,12 @@ model.add(Dense(1))
 ```
 
 ## Results
-<<<<<<< HEAD
-=======
-
-<p align="center">
->>>>>>> 35b3feac71d0071bd0c8ba71603d7c56c6ff4da3
   <img src="images/example1.png" alt="example1"/>
   <img src="images/example2.png" alt="example2"/>
-<<<<<<< HEAD
-  ## Train by FloydHub server
+## Train by FloydHub server
   ![Train_Record](images/Train_record.png)
   - **command**.
  I have initiated files and uploaded data.
   ```
   floyd run --data shuaichen/datasets/car_train_data/3:/data --gpu --env tensorflow-1.1 "python model.py"
   ```
-=======
-</p>
->>>>>>> 35b3feac71d0071bd0c8ba71603d7c56c6ff4da3
